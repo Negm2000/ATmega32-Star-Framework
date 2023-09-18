@@ -1,5 +1,6 @@
 #ifndef MCAL_TMR_TMR0_CONFIG_H_
 #define MCAL_TMR_TMR0_CONFIG_H_
+#include "TMR0_registers.h"
 
 // Bits [3 and 6] TCCR0 Register
 typedef enum EN_TMR_Waveform_Modes
@@ -34,7 +35,7 @@ typedef enum EN_TMR_Clock_Select
    EXTERNAL_CLK_RISING
 } EN_TMR_Clock_Select;
 
-// TIMSK Register Configurations
+// Bits [0-1] TIMSK Register 
 typedef enum EN_TMR_Interrupts
 {
     DISABLE_ALL,
