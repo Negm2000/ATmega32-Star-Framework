@@ -19,7 +19,7 @@ ST_TMR0_Config ST_TMR0_Default_Config =
 {
     waveform_generation_mode : FAST_PWM,
     compare_match_output_mode: OC_CLEAR,
-    prescaler_select : PRESCALER_1,
+    prescaler_select : PRESCALER_8,
     enabled_interrupts : OVERFLOW_INTERRUPT_ENABLE
 };
 

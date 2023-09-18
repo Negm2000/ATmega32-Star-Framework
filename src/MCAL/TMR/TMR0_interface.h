@@ -3,49 +3,7 @@
 #include "LIB/datatypes.h"
 #include "TMR0_registers.h"
 #include "MCAL/INT/INT_interface.h"
-
-
-// Bits [3 and 6] TCCR0 Register
-typedef enum EN_TMR_Waveform_Modes
-{
-    NORMAL = 0,
-    PHASE_CORRECT =  _WGM00,
-    CTC = _WGM01,
-    FAST_PWM = _WGM00 | _WGM01
-
-} EN_TMR_Waveform_Modes;
-
-// Bits [4-5] TCCR0 Register
-typedef enum EN_TMR_Output_Compare_Modes
-{
-    OC_DISABLE = 0,
-    OC_TOGGLE = _COM00,
-    OC_CLEAR = _COM01,
-    OC_SET = _COM00 | _COM01
-
-} EN_TMR_Output_Compare_Modes;
-
-// Bits [0-2] TCCR0 Register
-typedef enum EN_TMR_Clock_Select
-{
-   CLK_STOPPED,
-   PRESCALER_1,
-   PRESCALER_8,
-   PRESCALER_64,
-   PRESCALER_256,
-   PRESCALER_1024,
-   EXTERNAL_CLK_FALLING,
-   EXTERNAL_CLK_RISING
-} EN_TMR_Clock_Select;
-
-// TIMSK Register
-typedef enum EN_TMR_Interrupts
-{
-    DISABLE_ALL,
-    OVERFLOW_INTERRUPT_ENABLE,
-    OC_MATCH_INTERRUPT_ENABLE,
-    ENABLE_ALL
-} EN_TMR_Interrupts;
+#include "TMR0_config.h"
 
 /// @brief Struct that defines how the timer will be configured.
 typedef struct ST_TMR0_Config

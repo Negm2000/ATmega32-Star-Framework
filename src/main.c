@@ -13,9 +13,9 @@ uint32 last = 0;
 int main() {
   // put your setup code here, to run once:
   DIO_PinMode(PORTB,PIN3, OUTPUT);
-  ST_TMR0_Default_Config.waveform_generation_mode = CTC;
-  ST_TMR0_Default_Config.compare_match_output_mode = OC_TOGGLE;
-  ST_TMR0_Default_Config.prescaler_select = PRESCALER_64;
+  // ST_TMR0_Default_Config.waveform_generation_mode = CTC;
+  // ST_TMR0_Default_Config.compare_match_output_mode = OC_TOGGLE;
+  // ST_TMR0_Default_Config.prescaler_select = PRESCALER_64;
   TMR0_Config(&ST_TMR0_Default_Config);
   // TMR0_SetOverflowPeriod_ms(1000);
   // TMR0_SetOverflowCallback(ToggleLEDs);
