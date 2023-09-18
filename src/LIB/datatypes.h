@@ -14,7 +14,7 @@ typedef volatile uint8 *const register_address_t;  //  Pointer to a volatile 8 b
 
 #define NULL 0
 #define NULLPTR (void*) 0 
-
+ 
 #define TRUE 1
 #define FALSE 0
 

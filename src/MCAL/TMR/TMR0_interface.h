@@ -14,6 +14,7 @@ typedef struct ST_TMR0_Config
     EN_TMR_Interrupts enabled_interrupts;
 } ST_TMR0_Config;
 
+
 extern ST_TMR0_Config ST_TMR0_Default_Config;
 
 
