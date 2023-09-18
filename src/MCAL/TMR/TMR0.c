@@ -10,6 +10,7 @@ volatile uint64 OverflowsSinceSysStart;
 uint32 _OverflowsTillCallback; 
 ST_TMR0_Config Current_Config;
 uint8 Preload;
+// Lookup table, used to convert from prescaler enum value to actuale prescaler value
 uint16 Prescaler_LUT[] = {0,1,8,64,256,1024,0,0} ;
 
 
@@ -106,6 +107,7 @@ void TMR0_OVF(void){
     if (OverflowCallback) {
     OverflowCallback();
     _OverflowCounter = 0;
+    _TCNT0 = Preload;
     }
 }
 
