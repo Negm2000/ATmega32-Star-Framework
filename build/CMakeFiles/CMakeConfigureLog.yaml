@@ -1,0 +1,321 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineSystem.cmake:204 (message)"
+      - "CMakeLists.txt:38 (project)"
+    message: |
+      The system is: Linux - 6.2.0-32-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:38 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lm
+      /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lc
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:38 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/avr-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/3.26.3/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:38 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-4top32"
+      binary: "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-4top32"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: /home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-4top32
+        
+        Run Build Command(s):/home/negm/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c934a/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c934a.dir/build.make CMakeFiles/cmTC_c934a.dir/build
+        gmake[1]: Entering directory '/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-4top32'
+        Building C object CMakeFiles/cmTC_c934a.dir/CMakeCCompilerABI.c.o
+        /usr/bin/avr-gcc   -v -o CMakeFiles/cmTC_c934a.dir/CMakeCCompilerABI.c.o -c /home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        Reading specs from /usr/lib/gcc/avr/5.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/usr/bin/avr-gcc
+        Target: avr
+        Configured with: ../gcc/configure -v --enable-languages=c,c++ --prefix=/usr/lib --infodir=/usr/share/info --mandir=/usr/share/man --bindir=/usr/bin --libexecdir=/usr/lib --libdir=/usr/lib --enable-shared --with-system-zlib --enable-long-long --enable-nls --without-included-gettext --disable-libssp --disable-libcc1 --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=avr ASFLAGS= CFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' CPPFLAGS='-Wdate-time -D_FORTIFY_SOURCE=2' CXXFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' DFLAGS=-frelease FCFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong' FFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong' GCJFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -fstack-protector-strong' LDFLAGS='-Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -flto=auto -Wl,-z,relro' OBJCFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' OBJCXXFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat '
+        Thread model: single
+        gcc version 5.4.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c934a.dir/CMakeCCompilerABI.c.o' '-c' '-specs=device-specs/specs-avr2'
+         /usr/lib/gcc/avr/5.4.0/cc1 -quiet -v /home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeCCompilerABI.c -mn-flash=1 -mskip-bug -quiet -dumpbase CMakeCCompilerABI.c -auxbase-strip CMakeFiles/cmTC_c934a.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccc2X2yH.s
+        GNU C11 (GCC) version 5.4.0 (avr)
+        	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/lib/gcc/avr/5.4.0/../../../avr/sys-include"
+        ignoring nonexistent directory "/usr/lib/gcc/avr/5.4.0/../../../avr/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/avr/5.4.0/include
+         /usr/lib/gcc/avr/5.4.0/include-fixed
+        End of search list.
+        GNU C11 (GCC) version 5.4.0 (avr)
+        	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 2637c586887de4fb30d92164252586da
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c934a.dir/CMakeCCompilerABI.c.o' '-c' '-specs=device-specs/specs-avr2'
+         /usr/lib/gcc/avr/5.4.0/../../../avr/bin/as -mmcu=avr2 -o CMakeFiles/cmTC_c934a.dir/CMakeCCompilerABI.c.o /tmp/ccc2X2yH.s
+        COMPILER_PATH=/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/5.4.0/../../../avr/bin/
+        LIBRARY_PATH=/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/5.4.0/../../../avr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c934a.dir/CMakeCCompilerABI.c.o' '-c' '-specs=device-specs/specs-avr2'
+        Linking C executable cmTC_c934a
+        /home/negm/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c934a.dir/link.txt --verbose=1
+        /usr/bin/avr-gcc  -v CMakeFiles/cmTC_c934a.dir/CMakeCCompilerABI.c.o -o cmTC_c934a 
+        Using built-in specs.
+        Reading specs from /usr/lib/gcc/avr/5.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/usr/bin/avr-gcc
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/avr/5.4.0/lto-wrapper
+        Target: avr
+        Configured with: ../gcc/configure -v --enable-languages=c,c++ --prefix=/usr/lib --infodir=/usr/share/info --mandir=/usr/share/man --bindir=/usr/bin --libexecdir=/usr/lib --libdir=/usr/lib --enable-shared --with-system-zlib --enable-long-long --enable-nls --without-included-gettext --disable-libssp --disable-libcc1 --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=avr ASFLAGS= CFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' CPPFLAGS='-Wdate-time -D_FORTIFY_SOURCE=2' CXXFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' DFLAGS=-frelease FCFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong' FFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong' GCJFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -fstack-protector-strong' LDFLAGS='-Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -flto=auto -Wl,-z,relro' OBJCFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' OBJCXXFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat '
+        Thread model: single
+        gcc version 5.4.0 (GCC) 
+        COMPILER_PATH=/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/5.4.0/../../../avr/bin/
+        LIBRARY_PATH=/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/5.4.0/../../../avr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c934a' '-specs=device-specs/specs-avr2'
+         /usr/lib/gcc/avr/5.4.0/collect2 -plugin /usr/lib/gcc/avr/5.4.0/liblto_plugin.so -plugin-opt=/usr/lib/gcc/avr/5.4.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc1wVcqE.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lc --pmem-wrap-around=8k -o cmTC_c934a -L/usr/lib/gcc/avr/5.4.0 -L/usr/lib/gcc/avr/5.4.0/../../../avr/lib CMakeFiles/cmTC_c934a.dir/CMakeCCompilerABI.c.o --start-group -lgcc -lm -lc --end-group
+        /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lm
+        /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lc
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_c934a.dir/build.make:99: cmTC_c934a] Error 1
+        gmake[1]: Leaving directory '/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-4top32'
+        gmake: *** [Makefile:127: cmTC_c934a/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:38 (project)"
+    checks:
+      - "Check for working C compiler: /usr/bin/avr-gcc"
+    directories:
+      source: "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-8NAFlh"
+      binary: "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-8NAFlh"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: /home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-8NAFlh
+        
+        Run Build Command(s):/home/negm/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_85337/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_85337.dir/build.make CMakeFiles/cmTC_85337.dir/build
+        gmake[1]: Entering directory '/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-8NAFlh'
+        Building C object CMakeFiles/cmTC_85337.dir/testCCompiler.c.o
+        /usr/bin/avr-gcc    -o CMakeFiles/cmTC_85337.dir/testCCompiler.c.o -c /home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-8NAFlh/testCCompiler.c
+        Linking C executable cmTC_85337
+        /home/negm/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_85337.dir/link.txt --verbose=1
+        /usr/bin/avr-gcc CMakeFiles/cmTC_85337.dir/testCCompiler.c.o -o cmTC_85337 
+        /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lm
+        /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lc
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_85337.dir/build.make:99: cmTC_85337] Error 1
+        gmake[1]: Leaving directory '/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-8NAFlh'
+        gmake: *** [Makefile:127: cmTC_85337/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:38 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/avr-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lm
+      /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lc
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:38 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/avr-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/3.26.3/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:38 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-EZuCRn"
+      binary: "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-EZuCRn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: /home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-EZuCRn
+        
+        Run Build Command(s):/home/negm/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9c96b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9c96b.dir/build.make CMakeFiles/cmTC_9c96b.dir/build
+        gmake[1]: Entering directory '/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-EZuCRn'
+        Building C object CMakeFiles/cmTC_9c96b.dir/CMakeCCompilerABI.c.o
+        /usr/bin/avr-gcc   -v -o CMakeFiles/cmTC_9c96b.dir/CMakeCCompilerABI.c.o -c /home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        Reading specs from /usr/lib/gcc/avr/5.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/usr/bin/avr-gcc
+        Target: avr
+        Configured with: ../gcc/configure -v --enable-languages=c,c++ --prefix=/usr/lib --infodir=/usr/share/info --mandir=/usr/share/man --bindir=/usr/bin --libexecdir=/usr/lib --libdir=/usr/lib --enable-shared --with-system-zlib --enable-long-long --enable-nls --without-included-gettext --disable-libssp --disable-libcc1 --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=avr ASFLAGS= CFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' CPPFLAGS='-Wdate-time -D_FORTIFY_SOURCE=2' CXXFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' DFLAGS=-frelease FCFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong' FFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong' GCJFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -fstack-protector-strong' LDFLAGS='-Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -flto=auto -Wl,-z,relro' OBJCFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' OBJCXXFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat '
+        Thread model: single
+        gcc version 5.4.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9c96b.dir/CMakeCCompilerABI.c.o' '-c' '-specs=device-specs/specs-avr2'
+         /usr/lib/gcc/avr/5.4.0/cc1 -quiet -v /home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeCCompilerABI.c -mn-flash=1 -mskip-bug -quiet -dumpbase CMakeCCompilerABI.c -auxbase-strip CMakeFiles/cmTC_9c96b.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccvowD07.s
+        GNU C11 (GCC) version 5.4.0 (avr)
+        	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/lib/gcc/avr/5.4.0/../../../avr/sys-include"
+        ignoring nonexistent directory "/usr/lib/gcc/avr/5.4.0/../../../avr/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/avr/5.4.0/include
+         /usr/lib/gcc/avr/5.4.0/include-fixed
+        End of search list.
+        GNU C11 (GCC) version 5.4.0 (avr)
+        	compiled by GNU C version 11.2.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 2637c586887de4fb30d92164252586da
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9c96b.dir/CMakeCCompilerABI.c.o' '-c' '-specs=device-specs/specs-avr2'
+         /usr/lib/gcc/avr/5.4.0/../../../avr/bin/as -mmcu=avr2 -o CMakeFiles/cmTC_9c96b.dir/CMakeCCompilerABI.c.o /tmp/ccvowD07.s
+        COMPILER_PATH=/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/5.4.0/../../../avr/bin/
+        LIBRARY_PATH=/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/5.4.0/../../../avr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9c96b.dir/CMakeCCompilerABI.c.o' '-c' '-specs=device-specs/specs-avr2'
+        Linking C executable cmTC_9c96b
+        /home/negm/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9c96b.dir/link.txt --verbose=1
+        /usr/bin/avr-gcc  -v CMakeFiles/cmTC_9c96b.dir/CMakeCCompilerABI.c.o -o cmTC_9c96b 
+        Using built-in specs.
+        Reading specs from /usr/lib/gcc/avr/5.4.0/device-specs/specs-avr2
+        COLLECT_GCC=/usr/bin/avr-gcc
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/avr/5.4.0/lto-wrapper
+        Target: avr
+        Configured with: ../gcc/configure -v --enable-languages=c,c++ --prefix=/usr/lib --infodir=/usr/share/info --mandir=/usr/share/man --bindir=/usr/bin --libexecdir=/usr/lib --libdir=/usr/lib --enable-shared --with-system-zlib --enable-long-long --enable-nls --without-included-gettext --disable-libssp --disable-libcc1 --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=avr ASFLAGS= CFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' CPPFLAGS='-Wdate-time -D_FORTIFY_SOURCE=2' CXXFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' DFLAGS=-frelease FCFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong' FFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong' GCJFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -fstack-protector-strong' LDFLAGS='-Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -flto=auto -Wl,-z,relro' OBJCFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat ' OBJCXXFLAGS='-g -O2 -ffile-prefix-map=/build/gcc-avr-VxQ9yL/gcc-avr-5.4.0+Atmel3.6.2=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat '
+        Thread model: single
+        gcc version 5.4.0 (GCC) 
+        COMPILER_PATH=/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/5.4.0/../../../avr/bin/
+        LIBRARY_PATH=/usr/lib/gcc/avr/5.4.0/:/usr/lib/gcc/avr/5.4.0/../../../avr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9c96b' '-specs=device-specs/specs-avr2'
+         /usr/lib/gcc/avr/5.4.0/collect2 -plugin /usr/lib/gcc/avr/5.4.0/liblto_plugin.so -plugin-opt=/usr/lib/gcc/avr/5.4.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccUVtDon.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lc --pmem-wrap-around=8k -o cmTC_9c96b -L/usr/lib/gcc/avr/5.4.0 -L/usr/lib/gcc/avr/5.4.0/../../../avr/lib CMakeFiles/cmTC_9c96b.dir/CMakeCCompilerABI.c.o --start-group -lgcc -lm -lc --end-group
+        /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lm
+        /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lc
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_9c96b.dir/build.make:99: cmTC_9c96b] Error 1
+        gmake[1]: Leaving directory '/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-EZuCRn'
+        gmake: *** [Makefile:127: cmTC_9c96b/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/negm/.local/lib/python3.10/site-packages/cmake/data/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:38 (project)"
+    checks:
+      - "Check for working C compiler: /usr/bin/avr-gcc"
+    directories:
+      source: "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-82Beco"
+      binary: "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-82Beco"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: /home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-82Beco
+        
+        Run Build Command(s):/home/negm/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d94d9/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d94d9.dir/build.make CMakeFiles/cmTC_d94d9.dir/build
+        gmake[1]: Entering directory '/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-82Beco'
+        Building C object CMakeFiles/cmTC_d94d9.dir/testCCompiler.c.o
+        /usr/bin/avr-gcc    -o CMakeFiles/cmTC_d94d9.dir/testCCompiler.c.o -c /home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-82Beco/testCCompiler.c
+        Linking C executable cmTC_d94d9
+        /home/negm/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d94d9.dir/link.txt --verbose=1
+        /usr/bin/avr-gcc CMakeFiles/cmTC_d94d9.dir/testCCompiler.c.o -o cmTC_d94d9 
+        /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lm
+        /usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lc
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_d94d9.dir/build.make:99: cmTC_d94d9] Error 1
+        gmake[1]: Leaving directory '/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/build/CMakeFiles/CMakeScratch/TryCompile-82Beco'
+        gmake: *** [Makefile:127: cmTC_d94d9/fast] Error 2
+        
+      exitCode: 2
+...
