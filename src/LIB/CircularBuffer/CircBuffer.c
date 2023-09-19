@@ -17,8 +17,8 @@ void CircBuffer_push(CircBuffer *this, Q_TYPE val)
 Q_TYPE CircBuffer_pop(CircBuffer *this)
 {
 
-    if (!this->size)
-        return EMPTY_BUFFER_ERROR;
+    // if (!this->size)
+    //     return EMPTY_BUFFER_ERROR;
     this->size--;
     Q_TYPE val = this->arr[this->head];
     this->head = (this->head + 1) % BUFFER_SIZE;
@@ -28,9 +28,12 @@ uint8 CircBuffer_isEmpty(CircBuffer *this) { return this->size == 0; }
 uint16 CircBuffer_size(CircBuffer *this) { return this->size; }
 Q_TYPE CircBuffer_front(CircBuffer *this)
 {
-    return (this->size > 0) ? this->arr[this->head] : EMPTY_BUFFER_ERROR;
+    // return (this->size > 0) ? this->arr[this->head] : EMPTY_BUFFER_ERROR;
+    return this->arr[this->head];
 }
 Q_TYPE CircBuffer_back(CircBuffer *this)
 {
-    return (this->size > 0) ? this->arr[this->tail] : EMPTY_BUFFER_ERROR;
+    // return (this->size > 0) ? this->arr[this->tail] : EMPTY_BUFFER_ERROR;
+    return this->arr[this->tail];
+
 }
