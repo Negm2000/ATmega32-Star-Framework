@@ -1,17 +1,10 @@
-// #include <stdio.h>
-// #include <stdint.h>
-// typedef union bool
-// {
-//     uint8_t true:1;
-//     uint8_t false:1;
-// } bool = {1};
+#include <stdio.h>
+#include <stdint.h>
+#include "LIB/CircularBuffer/CircBuffer.h"
 
 
-// bool isTrue(void){return 1;}
-
-
-// void main(void){
-
-//    printf ("%lu", sizeof (bool));
-
-// }
+void main(void){
+    MAKE_CBUFFER(cb);
+    CircBuffer_push(&cb, 8);
+    printf("%d", CircBuffer_pop(&cb));
+}
