@@ -109,7 +109,7 @@ void TMR0_SetFrequency(uint32 frequency)
         _OCR0 = (F_CPU / (2 * N * frequency)) - 1;
 }
 
-void TMR0_OVF(void)
+void ISR_TMR0_OVF(void)
 {
     ++OverflowsSinceSysStart;
 
@@ -127,8 +127,7 @@ void TMR0_OVF(void)
     }
 }
 
-void TMR0_CMP(void)
+void ISR_TMR0_CMP(void)
 {
-    if (CompareCallback)
-        CompareCallback();
+    if (CompareCallback) CompareCallback();
 }

@@ -17,17 +17,7 @@
 #define _DOR    1<<3    
 #define _PE     1<<2
 #define _U2X    1<<1    
-#define _MPCM   1<<0     
-
-// UCSRA Bits
-#define _RXC    1<<7    
-#define _TXC    1<<6    
-#define _UDRE   1<<5     
-#define _FE     1<<4
-#define _DOR    1<<3    
-#define _PE     1<<2
-#define _U2X    1<<1    
-#define _MPCM   1<<0     
+#define _MPCM   1<<0       
 
 // UCSRB Bits
 #define _RXCIE    1<<7    
@@ -51,7 +41,6 @@
 
 //UBRRL and UBRRH
 
-#define _URSEL 1<<7
 
 
 

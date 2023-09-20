@@ -3,10 +3,14 @@
 #include "LIB/datatypes.h"
 
 // Change this to make the CircBuffer hold more elements before overwriting old data
-#define BUFFER_SIZE 100
+#define BUFFER_SIZE 32
 // Change this to make the CircBuffer hold different types
 #define Q_TYPE uint8
+
+#define IGNORE 0
+#define OVERWRITE 1
 #define BUFFER_FULL_BEHAVIOUR OVERWRITE
+
 
 typedef struct CircBuffer
 {
@@ -23,7 +27,6 @@ typedef struct CircBuffer
 void  CB_push(CircBuffer* this, Q_TYPE val);
 Q_TYPE CB_pop(CircBuffer* this);
 uint8 CB_isEmpty(CircBuffer* this);
-uint16 CB_size(CircBuffer* this);
 Q_TYPE CB_front(CircBuffer* this);
 Q_TYPE CB_back(CircBuffer* this);
 
