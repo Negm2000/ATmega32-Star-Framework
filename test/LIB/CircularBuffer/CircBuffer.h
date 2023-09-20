@@ -20,12 +20,12 @@ typedef struct CircBuffer
 #define MAKE_CBUFFER(Q) CircBuffer Q = {.head = 0, .tail = 0, .size = 0}
 
 
-void  CircBuffer_push(CircBuffer* this, Q_TYPE val);
-Q_TYPE CircBuffer_pop(CircBuffer* this);
-uint8 CircBuffer_isEmpty(CircBuffer* this);
-uint16 CircBuffer_size(CircBuffer* this);
-Q_TYPE CircBuffer_front(CircBuffer* this);
-Q_TYPE CircBuffer_back(CircBuffer* this);
+void  CB_push(CircBuffer* this, Q_TYPE val);
+Q_TYPE CB_pop(CircBuffer* this);
+uint8 CB_isEmpty(CircBuffer* this);
+uint16 CB_size(CircBuffer* this);
+Q_TYPE CB_front(CircBuffer* this);
+Q_TYPE CB_back(CircBuffer* this);
 
 
 

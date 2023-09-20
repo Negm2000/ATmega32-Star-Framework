@@ -1,6 +1,6 @@
 #include "CircBuffer.h"
 
-void CircBuffer_push(CircBuffer *this, Q_TYPE val)
+void CB_push(CircBuffer *this, Q_TYPE val)
 {
     this->arr[this->tail] = val;
     // Modulo resets tail to 0 when exceeding buffer size
@@ -14,7 +14,7 @@ void CircBuffer_push(CircBuffer *this, Q_TYPE val)
     this->size++;
 }
 
-Q_TYPE CircBuffer_pop(CircBuffer *this)
+Q_TYPE CB_pop(CircBuffer *this)
 {
 
     // if (!this->size)
@@ -24,14 +24,14 @@ Q_TYPE CircBuffer_pop(CircBuffer *this)
     this->head = (this->head + 1) % BUFFER_SIZE;
     return val;
 }
-uint8 CircBuffer_isEmpty(CircBuffer *this) { return this->size == 0; }
-uint16 CircBuffer_size(CircBuffer *this) { return this->size; }
-Q_TYPE CircBuffer_front(CircBuffer *this)
+uint8 CB_isEmpty(CircBuffer *this) { return this->size == 0; }
+uint16 CB_size(CircBuffer *this) { return this->size; }
+Q_TYPE CB_front(CircBuffer *this)
 {
     // return (this->size > 0) ? this->arr[this->head] : EMPTY_BUFFER_ERROR;
     return this->arr[this->head];
 }
-Q_TYPE CircBuffer_back(CircBuffer *this)
+Q_TYPE CB_back(CircBuffer *this)
 {
     // return (this->size > 0) ? this->arr[this->tail] : EMPTY_BUFFER_ERROR;
     return this->arr[this->tail];
