@@ -9,24 +9,23 @@
 
 #define IGNORE 0
 #define OVERWRITE 1
-#define BUFFER_FULL_BEHAVIOUR OVERWRITE
+#define FLUSH 2
+#define BUFFER_OVERRUN_BEHAVIOUR OVERWRITE
 
 
-typedef struct CircBuffer
+typedef volatile struct CircBuffer
 {
-  Q_TYPE arr[BUFFER_SIZE];
-  uint16 head;
-  uint16 tail;
-  uint16 size;
+  uint8 arr[BUFFER_SIZE];
+  uint8 head;
+  uint8 tail;
+  uint8 bitmask; // https://stackoverflow.com/questions/11606971/how-does-bit-masking-buffer-index-result-in-wrap-around
 } CircBuffer;
 
-// Macro to create a CircBuffer object that is properly initialized.
-#define MAKE_CBUFFER(Q) CircBuffer Q = {.head = 0, .tail = 0, .size = 0}
 
 
 void  CB_push(CircBuffer* this, Q_TYPE val);
 Q_TYPE CB_pop(CircBuffer* this);
-uint8 CB_isEmpty(CircBuffer* this);
+uint8 CB_isEmpty(const CircBuffer* this);
 Q_TYPE CB_front(CircBuffer* this);
 Q_TYPE CB_back(CircBuffer* this);
 

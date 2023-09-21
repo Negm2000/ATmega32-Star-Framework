@@ -15,8 +15,8 @@ uint16 Prescaler_LUT[] = {0, 1, 8, 64, 256, 1024, 0, 0};
 
 ST_TMR0_Config ST_TMR0_Default_Config =
     {
-        waveform_generation_mode : FAST_PWM,
-        compare_match_output_mode : OC_CLEAR,
+        waveform_generation_mode : NORMAL,
+        compare_match_output_mode : OC_DISABLE,
         prescaler_select : PRESCALER_8,
         enabled_interrupts : OVERFLOW_INTERRUPT_ENABLE
     };
@@ -38,10 +38,9 @@ void TMR0_Config(ST_TMR0_Config *config)
 
 void TMR0_SetOverflowPeriod_ms(float time_ms)
 {
-
     uint16 prescaler = Prescaler_LUT[Current_Config.prescaler_select];
     float overflows_needed = (time_ms) / (SECONDS_PER_OVF(prescaler) * 1000);
-    if (ST_TMR0_Default_Config.waveform_generation_mode == PHASE_CORRECT)
+    if (Current_Config.waveform_generation_mode == PHASE_CORRECT)
         overflows_needed /= 2;
 
     // Preload calculation
@@ -58,17 +57,21 @@ void TMR0_Delay_ms(float time_ms)
         overflows_needed /= 2;
 
     // Preload calculation
-    Preload = (overflows_needed - (int32)overflows_needed) * 256;
-    uint32 Overflow_Counter = 0;
+    _TCNT0 = (overflows_needed - (int32)overflows_needed) * 256;
 
-    while (Overflow_Counter < (int32)overflows_needed)
-    {
-        if (get_bit(_TIFR, 0))
-        {
-            set_bit(_TIFR, 0);
-            Overflow_Counter++;
+    if(Current_Config.enabled_interrupts != OVERFLOW_INTERRUPT_ENABLE){
+        uint32 Overflow_Counter = 0;
+        while (Overflow_Counter < (int32)overflows_needed){
+            if (get_bit(_TIFR, 0)){
+                set_bit(_TIFR, 0);
+                Overflow_Counter++;
+            }
         }
+        return;
     }
+
+    _OverflowsTillCallback = overflows_needed;
+    while(_OverflowCounter+1 < overflows_needed);
 }
 
 void TMR0_SetOverflowCallback(void (*callback_func)(void))
@@ -119,12 +122,10 @@ void ISR_TMR0_OVF(void)
         return;
     }
 
-    if (OverflowCallback)
-    {
-        OverflowCallback();
-        _OverflowCounter = 0;
-        _TCNT0 = Preload;
-    }
+    if (OverflowCallback) OverflowCallback();
+
+    _OverflowCounter = 0;
+    _TCNT0 = Preload;
 }
 
 void ISR_TMR0_CMP(void)

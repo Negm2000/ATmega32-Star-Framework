@@ -17,7 +17,8 @@ void DIO_PinDigitalWrite(EN_Port_Number port, EN_Pin_Number pins, EN_Pin_Value p
 }
 
 void DIO_PinDigitalToggle(EN_Port_Number port, EN_Pin_Number pins){
-    tog_bits(*PortNumberToPortAddress(port,OUTPUT_REG), pins);
+    register_address_t port_address = PortNumberToPortAddress(port,OUTPUT_REG);
+    tog_bits(*port_address, pins);
 }
 
 
