@@ -13,11 +13,12 @@ int main(void){
     if (UART_DataAvailable()) 
     {
       uint8 ch[100];
-      UART_ReadString(ch,'\n');
+      uint8 str_len = UART_ReadString(ch,'\n');
+      for (int i=0;i<str_len-1; i++) ++ch[i];
       UART_WriteString(ch);
       // UART_WriteCharacter(ch+1);
       // UART_WriteCharacter('\n');
-      TMR0_Delay_ms(1000);
-    }
+      // TMR0_Delay_ms(1000);
+    } 
   }
 }

@@ -42,7 +42,7 @@ uint8 UART_ReadCharacter(void){
 uint8 UART_ReadString(uint8* out_str, uint8 delimitter){
     uint8 i=0;
     while (CB_peek(&RX_Buffer) != delimitter){
-       out_str[i++] = UART_ReadCharacter();
+        CB_pop(&RX_Buffer, &out_str[i++]);
        // Wait for the next byte to be avalable to read
        while(CB_isEmpty(&RX_Buffer));
     }
