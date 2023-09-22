@@ -2,32 +2,37 @@
 #define LIB_CircBuffer_H_
 #include "LIB/datatypes.h"
 
-// Change this to make the CircBuffer hold more elements before overwriting old data
-#define BUFFER_SIZE 32
 // Change this to make the CircBuffer hold different types
-#define Q_TYPE uint8
+#define BUFFER_DATA_TYPE uint8
 
 #define IGNORE 0
-#define OVERWRITE 1
+#define OVERWRITE 1 // NOT THREAD/INTERRUPT SAFE
 #define FLUSH 2
-#define BUFFER_OVERRUN_BEHAVIOUR OVERWRITE
+#define BUFFER_OVERRUN_BEHAVIOUR FLUSH
 
 
-typedef volatile struct CircBuffer
+/*------------------------------------------------------------------------------------
+When allocating memory for a buffer, you MUST choose a buffer size thats a multiple of two.
+This allows us to get the wraparound effect with an extremely fast bitwise operation
+Rather than using the significantly slower modulo or if-compare with buffer size.
+------------------------------------------------------------------------------------*/ 
+
+typedef struct CircBuffer
 {
-  uint8 arr[BUFFER_SIZE];
-  uint8 head;
-  uint8 tail;
-  uint8 bitmask; // https://stackoverflow.com/questions/11606971/how-does-bit-masking-buffer-index-result-in-wrap-around
-} CircBuffer;
+  BUFFER_DATA_TYPE* buffer;
+  uint8 write_idx;
+  uint8 read_idx;
+  uint8 buffer_sz; // For: https://jameshfisher.com/2016/12/10/bitmask-wraparound/
+} volatile CircBuffer;
 
 
-
-void  CB_push(CircBuffer* this, Q_TYPE val);
-Q_TYPE CB_pop(CircBuffer* this);
-uint8 CB_isEmpty(const CircBuffer* this);
-Q_TYPE CB_front(CircBuffer* this);
-Q_TYPE CB_back(CircBuffer* this);
+void CB_setup(CircBuffer* CB, BUFFER_DATA_TYPE* buff, uint8 buffer_bize);
+// Will return 1 if successful, 0 if failed (buffer full)
+bool  CB_push(CircBuffer* this, BUFFER_DATA_TYPE val);
+// Will return 1 if successful, 0 if failed (buffer empty)
+bool CB_pop(CircBuffer* this, volatile BUFFER_DATA_TYPE* output);
+bool CB_isEmpty(const CircBuffer* this);
+BUFFER_DATA_TYPE CB_peek(const CircBuffer* this);
 
 
 

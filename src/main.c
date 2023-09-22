@@ -11,9 +11,9 @@ int main(void){
   while (1){
     if (UART_DataAvailable()) {
       uint8 ch[10];
-      UART_ReadString(ch,'\n');
+      if(!UART_ReadString(ch,'\n')) continue;
       // if (ch == '\n') DIO_PinDigitalToggle(PORTC,PIN0);
-      UART_WriteCharacter(ch[0]);
+      UART_WriteString("Error!\n");
     }
   }
   //   if (UART_DataAvailable()) DIO_PinDigitalWrite(PORTC, PIN7, HIGH);

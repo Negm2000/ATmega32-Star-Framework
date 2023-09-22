@@ -18,5 +18,9 @@
 #define tog_bits(data,bits)     ( (data) ^=  (bits))
 #define get_bit_r(reg, bit)     ( ((reg) & (bit))>0)
 
+// Useful math tricks
+
+#define fast_modulo(n,even_modulo) ((n) & (even_modulo-1))
+
 
 #endif // LIB_BITS_H_
