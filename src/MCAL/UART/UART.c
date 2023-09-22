@@ -34,18 +34,21 @@ uint8 UART_DataAvailable(void){
 
 uint8 UART_ReadCharacter(void){
     uint8 ch = 0;
-    while (CB_isEmpty(&RX_Buffer));
+    // while (CB_isEmpty(&RX_Buffer));
     CB_pop(&RX_Buffer, &ch);
     return ch;
 }
 
 uint8 UART_ReadString(uint8* out_str, uint8 delimitter){
     uint8 i=0;
-    while ((CB_peek(&RX_Buffer) != delimitter) ){
+    while (CB_peek(&RX_Buffer) != delimitter){
        out_str[i++] = UART_ReadCharacter();
+       // Wait for the next byte to be avalable to read
+       while(CB_isEmpty(&RX_Buffer));
     }
     // Pop off the delimitter that wasn't copied to our string.
     CB_pop(&RX_Buffer,&out_str[i]);
+    // Optional: Replace it with '\0', discarding the delimitter.
     out_str[i] = '\0';
     return(i);
 }
@@ -54,11 +57,10 @@ void UART_WriteCharacter(uint8 ch){
 
     while (!get_bit_r(_UCSRA,_UDRE));
     _UDR = ch;
-
 }
 void UART_WriteString(uint8* str){
     uint8 i=0;
-    while (str[i] != '\0'){
+    while (str[i] != '\0' && i<99){
         UART_WriteCharacter(str[i++]);
     }
     UART_WriteCharacter('\n');
@@ -72,4 +74,6 @@ void ISR_UART_DATA_RECIEVED(void){
     CB_push(&RX_Buffer,_UDR); 
     // Its possible to use the error return, to set some status flag.
 }
+
+
 

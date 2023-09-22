@@ -54,4 +54,12 @@ bool CB_pop(CircBuffer *this, volatile BUFFER_DATA_TYPE* output ){
 }
 
 bool CB_isEmpty(CircBuffer *this) { return (this->read_idx == this->write_idx);}
-BUFFER_DATA_TYPE CB_peek( CircBuffer *this)   { return this->buffer[this->read_idx];}
+
+BUFFER_DATA_TYPE CB_peek( CircBuffer *this) { 
+    uint8 local_read_idx = this->read_idx , local_write_idx = this->write_idx;
+
+    // If buffer empty, return 0xFF
+    if (local_read_idx == local_write_idx) return (BUFFER_DATA_TYPE)-1;
+    // Else
+    return this->buffer[local_read_idx];
+    }
