@@ -3,22 +3,10 @@
 #include "LIB/CircularBuffer/CircBuffer.h"
 
 
+uint8 local_read_idx=65, read_idx, buffer_sz = 64;
+#define fast_modulo(n,even_modulo) ((n) & (even_modulo-1))
 void main(void){
-    MAKE_CBUFFER(cb);
-    CB_push(&cb, 1);
-    CB_push(&cb, 2);
-    CB_push(&cb, 3);
-    CB_push(&cb, 4);
-    CB_push(&cb, 5);
-    #define F_CPU 8000000L
-    uint16 Baudrate = 9600;
-    uint16 UBBR = F_CPU/(16UL*Baudrate) - 1;
+    read_idx = fast_modulo(local_read_idx+1, buffer_sz);
 
-    uint8_t UBRRL = (uint8) UBBR;
-    uint8_t UBRRH =  UBBR >> 8;
-    while (!CB_isEmpty(&cb))
-    {
-        printf("%d, %d, %d, %d\n",CB_pop(&cb), UBBR, UBRRL, UBRRH);
-    }
-    
+    printf("%d\n",read_idx);
 }

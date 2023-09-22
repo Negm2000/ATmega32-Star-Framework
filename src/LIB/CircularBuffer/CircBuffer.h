@@ -31,8 +31,8 @@ void CB_setup(CircBuffer* CB, BUFFER_DATA_TYPE* buff, uint8 buffer_bize);
 bool  CB_push(CircBuffer* this, BUFFER_DATA_TYPE val);
 // Will return 1 if successful, 0 if failed (buffer empty)
 bool CB_pop(CircBuffer* this, volatile BUFFER_DATA_TYPE* output);
-bool CB_isEmpty(const CircBuffer* this);
-BUFFER_DATA_TYPE CB_peek(const CircBuffer* this);
+bool CB_isEmpty( CircBuffer* this);
+BUFFER_DATA_TYPE CB_peek( CircBuffer* this);
 
 
 

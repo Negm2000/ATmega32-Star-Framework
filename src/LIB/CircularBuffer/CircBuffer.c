@@ -15,7 +15,7 @@ bool CB_push(CircBuffer *this, BUFFER_DATA_TYPE val) {
     // 1. We copy over the values of head and tail in case they are changed by an interrupt during execution
     uint8 local_read_idx = this->read_idx , local_write_idx = this->write_idx;
     // 2. Check if the buffer is full, return a status error.
-    uint8 next_write_idx = fast_modulo(local_write_idx + 1, this->buffer_sz);
+    uint8 next_write_idx = fast_modulo(local_write_idx+1, this->buffer_sz);
 
     if (next_write_idx == local_read_idx){
         // Discard new data (Thread-safe)
@@ -53,5 +53,5 @@ bool CB_pop(CircBuffer *this, volatile BUFFER_DATA_TYPE* output ){
     return true;
 }
 
-bool CB_isEmpty(const CircBuffer *this) { return (this->read_idx == this->write_idx);}
-BUFFER_DATA_TYPE CB_peek(const CircBuffer *this)   { return this->buffer[this->read_idx];}
+bool CB_isEmpty(CircBuffer *this) { return (this->read_idx == this->write_idx);}
+BUFFER_DATA_TYPE CB_peek( CircBuffer *this)   { return this->buffer[this->read_idx];}

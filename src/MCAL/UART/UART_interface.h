@@ -10,6 +10,7 @@ uint8 UART_ReadCharacter(void);
 uint8 UART_ReadString(uint8* out_str, uint8 delimitter);
 void UART_WriteCharacter(uint8);
 void UART_WriteString(uint8* str);
+void UART_Flush(void);
 ISR(ISR_UART_DATA_RECIEVED);
 ISR(ISR_UART_TRANSMIT_READY);
 
