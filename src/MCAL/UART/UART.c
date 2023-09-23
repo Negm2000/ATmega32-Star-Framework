@@ -1,5 +1,6 @@
 #include "UART_interface.h"
 #include "UART_registers.h"
+#include "UART_config.h"
 #include "LIB/bits.h"
 #include "LIB/CircularBuffer/CircBuffer.h"
 #include "MCAL/DIO/DIO_interface.h"
@@ -63,12 +64,68 @@ void UART_WriteString(uint8* str){
     while (str[i] != '\0' && i<99){
         UART_WriteCharacter(str[i++]);
     }
-    UART_WriteCharacter('\n');
+    // UART_WriteCharacter('\0');
 }
 
 void UART_Flush(void){
     RX_Buffer.read_idx = RX_Buffer.write_idx;
 }
+
+#ifdef UART_PRINTF
+#include <stdarg.h>
+#include "LIB/string/string.h"
+
+void UART_Printf(const char* format, ...){
+    uint16 i=0;
+    va_list args;
+    va_start(args,format);
+
+    while (format[i])
+    {   
+
+        if (format[i] != '%') {
+            UART_WriteCharacter(format[i++]);
+            continue;
+         }
+
+
+        if (format[i] == '%') {
+
+            switch (format[i+1]) {
+                case 'd':{
+                    uint8 str_buffer[100]={0};
+                    itoa(va_arg(args,int),str_buffer,0);
+                    UART_WriteString(str_buffer);
+                    break;
+                }
+
+                case 'f':
+                {
+                    uint8 str_buffer[20]={0};
+                    ftoa(va_arg(args,double),str_buffer,2);
+                    UART_WriteString(str_buffer);
+                    break;
+                }
+
+                case 's':
+                    UART_WriteString(va_arg(args,uint8*));
+                    break;
+
+
+                case '%':
+                    UART_WriteCharacter('%');
+                    break;
+
+                default:
+                    i++;
+                    break;
+            }
+            i+=2;
+        }
+    }
+    va_end(args);
+}
+#endif
 
 void ISR_UART_DATA_RECIEVED(void){
     CB_push(&RX_Buffer,_UDR); 

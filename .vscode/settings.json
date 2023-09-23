@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/.pio/libdeps/usbasp/Unity"
+    "cmake.sourceDirectory": "/home/negm/Documents/PlatformIO/Projects/Negm_Embedded/.pio/libdeps/usbasp/Unity",
+    "C_Cpp.default.compilerPath": "/home/negm/.platformio/packages/toolchain-atmelavr/bin/avr-gcc"
 }

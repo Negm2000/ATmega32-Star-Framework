@@ -20,6 +20,17 @@
 
 // Useful math tricks
 
+
+/**
+ * @brief Calculates the modulo of a number using a power of two as the divisor.
+ * 
+ * This macro calculates the modulo of a number using a power of two as the divisor.
+ * It is equivalent to the expression `(n) % (even_modulo)`, but faster for powers of two.
+ * 
+ * @param n The number to calculate the modulo of.
+ * @param even_modulo The power of two divisor to use.
+ * @return The modulo of `n` using `even_modulo` as the divisor.
+ */
 #define fast_modulo(n,even_modulo) ((n) & (even_modulo-1))
 
 
