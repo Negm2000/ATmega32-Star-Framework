@@ -47,10 +47,10 @@ uint8 UART_ReadString(uint8* out_str, uint8 delimitter){
        while(CB_isEmpty(&RX_Buffer));
     }
     // Pop off the delimitter that wasn't copied to our string.
-    CB_pop(&RX_Buffer,&out_str[i]);
+    CB_pop(&RX_Buffer,&out_str[i-1]);
     // Optional: Replace it with '\0', discarding the delimitter.
-    out_str[i] = '\0';
-    return(i);
+    out_str[i-1] = '\0';
+    return (i-1);
 }
 
 void UART_WriteCharacter(uint8 ch){
