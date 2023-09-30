@@ -21,6 +21,7 @@ extern ST_TMR0_Config ST_TMR0_Default_Config;
 void TMR0_Config(ST_TMR0_Config *config);
 void TMR0_SetOverflowPeriod_ms(float time_ms);
 void TMR0_Delay_ms(float time_ms);
+void TMR0_Delay_us(float time_us);
 void TMR0_SetOverflowCallback(void (*callback_func)(void));
 void TMR0_SetCompareCallback(void (*callback_func)(void));
 void TMR0_SetPWM(uint8 duty_cycle_percentage);

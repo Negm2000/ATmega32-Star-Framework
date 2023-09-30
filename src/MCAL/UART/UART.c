@@ -68,7 +68,7 @@ void UART_WriteString(uint8* str){
 }
 
 void UART_Flush(void){
-    RX_Buffer.read_idx = RX_Buffer.write_idx;
+    CB_flush(&RX_Buffer);
 }
 
 #ifdef UART_PRINTF
@@ -93,7 +93,7 @@ void UART_Printf(const char* format, ...){
 
             switch (format[i+1]) {
                 case 'd':{
-                    uint8 str_buffer[100]={0};
+                    uint8 str_buffer[20]={0};
                     itoa(va_arg(args,int),str_buffer,0);
                     UART_WriteString(str_buffer);
                     break;
@@ -111,6 +111,9 @@ void UART_Printf(const char* format, ...){
                     UART_WriteString(va_arg(args,uint8*));
                     break;
 
+                case 'c':
+                    UART_WriteCharacter(va_arg(args,int));
+                    break;
 
                 case '%':
                     UART_WriteCharacter('%');
@@ -131,6 +134,4 @@ void ISR_UART_DATA_RECIEVED(void){
     CB_push(&RX_Buffer,_UDR); 
     // Its possible to use the error return, to set some status flag.
 }
-
-
 

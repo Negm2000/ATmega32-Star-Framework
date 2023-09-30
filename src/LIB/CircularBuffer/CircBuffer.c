@@ -38,7 +38,6 @@ bool CB_push(CircBuffer *this, BUFFER_DATA_TYPE val) {
     this->buffer[local_write_idx] = val;
     this->write_idx = next_write_idx;
     return true;
-
 }
 
 bool CB_pop(CircBuffer *this, volatile BUFFER_DATA_TYPE* output ){
@@ -54,6 +53,7 @@ bool CB_pop(CircBuffer *this, volatile BUFFER_DATA_TYPE* output ){
 }
 
 bool CB_isEmpty(CircBuffer *this) { return (this->read_idx == this->write_idx);}
+void CB_flush(CircBuffer *this) { this->read_idx = this->write_idx;}
 
 BUFFER_DATA_TYPE CB_peek( CircBuffer *this) { 
     uint8 local_read_idx = this->read_idx , local_write_idx = this->write_idx;
@@ -62,4 +62,4 @@ BUFFER_DATA_TYPE CB_peek( CircBuffer *this) {
     if (local_read_idx == local_write_idx) return (BUFFER_DATA_TYPE)-1;
     // Else
     return this->buffer[local_read_idx];
-    }
+}

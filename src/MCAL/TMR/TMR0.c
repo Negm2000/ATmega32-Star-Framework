@@ -5,7 +5,7 @@
 
 void (*OverflowCallback)(void);
 void (*CompareCallback)(void);
-volatile uint32 _OverflowCounter;
+volatile int64 _OverflowCounter;
 volatile uint64 OverflowsSinceSysStart;
 uint32 _OverflowsTillCallback;
 ST_TMR0_Config Current_Config;
@@ -36,6 +36,11 @@ void TMR0_Config(ST_TMR0_Config *config)
     set_bits(_TIMSK, config->enabled_interrupts);
 }
 
+/**
+ * @brief Sets the overflow period of Timer0 in milliseconds.
+ * 
+ * @param time_ms The desired overflow period in milliseconds.
+ */
 void TMR0_SetOverflowPeriod_ms(float time_ms)
 {
     uint16 prescaler = Prescaler_LUT[Current_Config.prescaler_select];
@@ -48,17 +53,28 @@ void TMR0_SetOverflowPeriod_ms(float time_ms)
     _OverflowsTillCallback = overflows_needed;
 }
 
-void TMR0_Delay_ms(float time_ms)
-{
 
+/**
+ * @brief Delays the program execution for a specified time in milliseconds using Timer0.
+ * 
+ * @param time_ms The time to delay in milliseconds.
+ */
+void TMR0_Delay_ms(float time_ms){
+
+    // Get the prescaler value from the lookup table based on the current configuration
     uint16 prescaler = Prescaler_LUT[Current_Config.prescaler_select];
+
+    // Calculate the number of overflows needed to achieve the desired delay time
     float overflows_needed = (time_ms) / (SECONDS_PER_OVF(prescaler) * 1000);
+    
+    // If the waveform generation mode is phase correct, divide the overflows needed by 2
     if (ST_TMR0_Default_Config.waveform_generation_mode == PHASE_CORRECT)
         overflows_needed /= 2;
 
-    // Preload calculation
+    // Calculate the preload value for the timer counter register
     _TCNT0 = (overflows_needed - (int32)overflows_needed) * 256;
 
+    // If overflow interrupts are not enabled, wait for the required number of overflows
     if(Current_Config.enabled_interrupts != OVERFLOW_INTERRUPT_ENABLE){
         uint32 Overflow_Counter = 0;
         while (Overflow_Counter < (int32)overflows_needed){
@@ -70,8 +86,18 @@ void TMR0_Delay_ms(float time_ms)
         return;
     }
 
+    // If overflow interrupts are enabled, set the number of overflows till the callback function is called
     _OverflowsTillCallback = overflows_needed;
+
+    _OverflowCounter = 0;
+    // Wait for the required number of overflows
     while(_OverflowCounter+1 < overflows_needed);
+}
+
+
+void TMR0_Delay_us(float time_us)
+{
+    TMR0_Delay_ms(time_us/1000);
 }
 
 void TMR0_SetOverflowCallback(void (*callback_func)(void))

@@ -11,7 +11,7 @@
  * @return The length of the resulting string.
  */
 uint8 itoa(int32 num, uint8* strbuf, uint8 min_str_len){
-  if (!num) { strbuf[0] = '0'; return 1; }
+  if (!num) { *strbuf = '0'; return 1; }
   bool negative = false;
   if(num<0) {
     negative = true;
@@ -58,4 +58,18 @@ void ftoa(float num, uint8* strbuf, uint8 decimal_places){
   uint8 decimal_point = itoa(int_part,strbuf,1);
   strbuf[decimal_point] = '.';
   itoa(num,&strbuf[decimal_point+1],decimal_places);   
+}
+
+int32 atoi(uint8* strbuf){
+  int32 num = 0;
+  int8 sign = 1;
+  if(*strbuf=='-') {sign=-1; strbuf++;}
+  else if(*strbuf=='+') {sign=1; strbuf++;}
+  while(*strbuf){
+    if(*strbuf<'0' || *strbuf>'9') return 0;
+    num*=10;
+    num+=(*strbuf-'0')*sign;
+    strbuf++;
+  }
+  return num;
 }

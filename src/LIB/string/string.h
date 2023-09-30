@@ -4,6 +4,7 @@
 
 uint8 itoa(int32 num, uint8* strbuf, uint8 min_str_len);
 void ftoa(float num, uint8* strbuf, uint8 decimal_places);
+int32 atoi(uint8* strbuf);
 
 
 #endif // LIB_STRING_STRING_H_

@@ -6,7 +6,15 @@
 typedef enum EN_Port_Number {PORTA,PORTB,PORTC,PORTD} EN_Port_Number;
 typedef enum EN_Pin_Value {LOW, HIGH} EN_Pin_Value ;
 typedef enum EN_Pin_State {INPUT, OUTPUT, PULLUP} EN_Pin_State;
+
 // This trick allows us to chain multiple pins in a single command in our functions
+/**
+ * @brief Enumeration for the available pin numbers.
+ * 
+ * This enumeration defines the available pin numbers for the DIO module.
+ * Each pin number is represented as a bit mask, where the bit position
+ * corresponds to the pin number (e.g. PIN0 is represented by bit 0).
+ */
 typedef enum EN_Pin_Number 
 {
     PIN0 = 1 << 0,
