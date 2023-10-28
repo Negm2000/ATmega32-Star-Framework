@@ -4,9 +4,10 @@
 #include "INT_registers.h"
 
 // Global Interrupt Enable
-#define SEI() (SREG |= (1<<7))
+#define SEI()  __asm__ __volatile__ ("sei" ::: "memory")
 // Global Interrupt Disable
-#define CLI() (SREG &= ~(1<<7))
+#define CLI()  __asm__ __volatile__ ("cli" ::: "memory")
+
 
 #define ISR(Vector) void Vector(void) __attribute__((signal,used))
 

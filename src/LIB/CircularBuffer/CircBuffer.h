@@ -12,7 +12,7 @@
 
 
 /*------------------------------------------------------------------------------------
-When allocating memory for a buffer, you MUST choose a buffer size thats a multiple of two.
+When allocating memory for a buffer, you MUST choose a buffer size thats a power of two.
 This allows us to get the wraparound effect with an extremely fast bitwise operation
 Rather than using the significantly slower modulo or if-compare with buffer size.
 ------------------------------------------------------------------------------------*/ 

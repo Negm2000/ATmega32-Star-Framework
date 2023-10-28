@@ -19,14 +19,15 @@ extern ST_TMR0_Config ST_TMR0_Default_Config;
 /// @brief Initialize timer0
 /// @param config Use and modify ST_TMR0_Default_Config or pass in your own config as a parameter
 void TMR0_Config(ST_TMR0_Config *config);
-void TMR0_SetOverflowPeriod_ms(float time_ms);
-void TMR0_Delay_ms(float time_ms);
-void TMR0_Delay_us(float time_us);
+void TMR0_SetCallbackPeriod_ms(float time_ms);
+void TMR0_Delay_ms(uint32 time_ms);
+void TMR0_Delay_us(uint32 time_us);
 void TMR0_SetOverflowCallback(void (*callback_func)(void));
 void TMR0_SetCompareCallback(void (*callback_func)(void));
 void TMR0_SetPWM(uint8 duty_cycle_percentage);
 void TMR0_SetFrequency(uint32 frequency);
 uint32 TMR0_Millis(void);
+uint64 TMR0_Micros(void);
 ISR(ISR_TMR0_OVF);
 ISR(ISR_TMR0_CMP);
 

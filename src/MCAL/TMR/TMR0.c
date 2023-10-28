@@ -5,13 +5,16 @@
 
 void (*OverflowCallback)(void);
 void (*CompareCallback)(void);
-volatile int64 _OverflowCounter;
+
+
+volatile uint64 _OverflowCounter;
 volatile uint64 OverflowsSinceSysStart;
 uint32 _OverflowsTillCallback;
+
 ST_TMR0_Config Current_Config;
 uint8 Preload;
-// Lookup table, used to convert from prescaler enum value to actuale prescaler value
-uint16 Prescaler_LUT[] = {0, 1, 8, 64, 256, 1024, 0, 0};
+uint16 Current_Prescaler;
+
 
 ST_TMR0_Config ST_TMR0_Default_Config =
     {
@@ -29,6 +32,9 @@ void TMR0_Config(ST_TMR0_Config *config)
     clr_bits(_TIMSK, _TOIE0 | _OCIE0);
 
     Current_Config = *config;
+    // Lookup table, used to convert from prescaler enum value to actuale prescaler value
+    uint16 Prescaler_LUT[] = {0, 1, 8, 64, 256, 1024, 0, 0};
+    Current_Prescaler = Prescaler_LUT[config->prescaler_select];
 
     // Create the bit mask based on the configurations chosen
     uint8 TCCR0_bitmask = config->prescaler_select | config->compare_match_output_mode | config->waveform_generation_mode;
@@ -37,68 +43,33 @@ void TMR0_Config(ST_TMR0_Config *config)
 }
 
 /**
- * @brief Sets the overflow period of Timer0 in milliseconds.
+ * @brief Sets the callback period of Timer0 in milliseconds.
  * 
  * @param time_ms The desired overflow period in milliseconds.
  */
-void TMR0_SetOverflowPeriod_ms(float time_ms)
+void TMR0_SetCallbackPeriod_ms(float time_ms)
 {
-    uint16 prescaler = Prescaler_LUT[Current_Config.prescaler_select];
-    float overflows_needed = (time_ms) / (SECONDS_PER_OVF(prescaler) * 1000);
+    float overflows_needed = (time_ms) / (SECONDS_PER_OVF(Current_Prescaler) * 1000);
+
     if (Current_Config.waveform_generation_mode == PHASE_CORRECT)
         overflows_needed /= 2;
 
     // Preload calculation
-    _TCNT0 = (overflows_needed - (int32)overflows_needed) * 256;
+    Preload = _TCNT0 = (overflows_needed - (int32)overflows_needed) * 256;
     _OverflowsTillCallback = overflows_needed;
 }
 
 
-/**
- * @brief Delays the program execution for a specified time in milliseconds using Timer0.
- * 
- * @param time_ms The time to delay in milliseconds.
- */
-void TMR0_Delay_ms(float time_ms){
-
-    // Get the prescaler value from the lookup table based on the current configuration
-    uint16 prescaler = Prescaler_LUT[Current_Config.prescaler_select];
-
-    // Calculate the number of overflows needed to achieve the desired delay time
-    float overflows_needed = (time_ms) / (SECONDS_PER_OVF(prescaler) * 1000);
-    
-    // If the waveform generation mode is phase correct, divide the overflows needed by 2
-    if (ST_TMR0_Default_Config.waveform_generation_mode == PHASE_CORRECT)
-        overflows_needed /= 2;
-
-    // Calculate the preload value for the timer counter register
-    _TCNT0 = (overflows_needed - (int32)overflows_needed) * 256;
-
-    // If overflow interrupts are not enabled, wait for the required number of overflows
-    if(Current_Config.enabled_interrupts != OVERFLOW_INTERRUPT_ENABLE){
-        uint32 Overflow_Counter = 0;
-        while (Overflow_Counter < (int32)overflows_needed){
-            if (get_bit(_TIFR, 0)){
-                set_bit(_TIFR, 0);
-                Overflow_Counter++;
-            }
-        }
-        return;
-    }
-
-    // If overflow interrupts are enabled, set the number of overflows till the callback function is called
-    _OverflowsTillCallback = overflows_needed;
-
-    _OverflowCounter = 0;
-    // Wait for the required number of overflows
-    while(_OverflowCounter+1 < overflows_needed);
+void TMR0_Delay_ms(uint32 time_ms){
+    uint64 release_time = TMR0_Millis() + time_ms;
+    while(TMR0_Millis() < release_time);
 }
 
-
-void TMR0_Delay_us(float time_us)
-{
-    TMR0_Delay_ms(time_us/1000);
+void TMR0_Delay_us(uint32 time_us){
+    uint64 release_time = TMR0_Micros() + time_us;
+    while(TMR0_Micros() < release_time);
 }
+
 
 void TMR0_SetOverflowCallback(void (*callback_func)(void))
 {
@@ -111,8 +82,12 @@ void TMR0_SetCompareCallback(void (*callback_func)(void))
 
 inline uint32 TMR0_Millis(void)
 {
-    uint16 prescaler = Prescaler_LUT[Current_Config.prescaler_select];
-    return (SECONDS_PER_OVF(prescaler) * 1000 * OverflowsSinceSysStart);
+    return (SECONDS_PER_OVF(Current_Prescaler) * 1000 * OverflowsSinceSysStart);
+}
+
+inline uint64 TMR0_Micros(void)
+{
+    return (SECONDS_PER_OVF(Current_Prescaler) * 1000000 * OverflowsSinceSysStart);
 }
 
 void TMR0_PWM(uint8 duty_cycle_percentage)
@@ -133,25 +108,22 @@ void TMR0_PWM(uint8 duty_cycle_percentage)
 
 void TMR0_SetFrequency(uint32 frequency)
 {
-    uint16 N = Prescaler_LUT[Current_Config.prescaler_select];
-    if (frequency < F_CPU / (2 * N))
-        _OCR0 = (F_CPU / (2 * N * frequency)) - 1;
+    if (frequency < F_CPU / (2 * Current_Prescaler))
+        _OCR0 = (F_CPU / (2 * Current_Prescaler * frequency)) - 1;
 }
 
 void ISR_TMR0_OVF(void)
 {
     ++OverflowsSinceSysStart;
+    
+    if (OverflowCallback){
+        ++_OverflowCounter;
+        if (_OverflowCounter < _OverflowsTillCallback) return;
 
-    if (_OverflowCounter < _OverflowsTillCallback)
-    {
-        _OverflowCounter++;
-        return;
+        OverflowCallback();
+        _OverflowCounter = 0;
+        _TCNT0 = Preload;
     }
-
-    if (OverflowCallback) OverflowCallback();
-
-    _OverflowCounter = 0;
-    _TCNT0 = Preload;
 }
 
 void ISR_TMR0_CMP(void)

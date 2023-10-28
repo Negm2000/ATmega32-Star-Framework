@@ -10,7 +10,7 @@
  * 
  * @return The length of the resulting string.
  */
-uint8 itoa(int32 num, uint8* strbuf, uint8 min_str_len){
+uint8 itoa(int64 num, uint8* strbuf, uint8 min_str_len){
   if (!num) { *strbuf = '0'; return 1; }
   bool negative = false;
   if(num<0) {
