@@ -28,10 +28,10 @@
  * It is equivalent to the expression `(n) % (even_modulo)`, but faster for powers of two.
  * 
  * @param n The number to calculate the modulo of.
- * @param even_modulo The power of two divisor to use.
+ * @param divisor The power of two divisor to use.
  * @return The modulo of `n` using `even_modulo` as the divisor.
  */
-#define fast_modulo(n,even_modulo) ((n) & (even_modulo-1))
+#define fast_modulo(n,divisor) ((n) & (divisor-1))
 
 
 #endif // LIB_BITS_H_
