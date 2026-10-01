@@ -4,6 +4,8 @@ Bare-metal drivers for the ATmega32A written from the datasheet, without the Ard
 
 ## Layers
 
+![Layer diagram: application, HAL, MCAL, LIB, hardware](docs/layers.svg)
+
 | Layer | Module | What it does |
 |---|---|---|
 | MCAL | `DIO` | Pin and port direction, write and toggle |
