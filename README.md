@@ -2,6 +2,10 @@
 
 Bare-metal drivers for the ATmega32A written from the datasheet, without the Arduino core or the avr-libc peripheral helpers. Register maps, interrupt vectors and the `ISR` macro are defined here by hand. Personal project (2023), built with PlatformIO and flashed over USBasp.
 
+![The clock demo on a 16x2 LCD wired to a simulated ATmega32](docs/lcd_clock.gif)
+
+The clock demo from `src/main.c` in SimulIDE: an ATmega32 at 8 MHz driving an HD44780 LCD in 4-bit mode on port A.
+
 ## Layers
 
 ![Layer diagram: application, HAL, MCAL, LIB, hardware](docs/layers.svg)
